@@ -1,5 +1,9 @@
 package com.ordering.app;
 
+import com.ordering.app.entity.Item;
+import com.ordering.app.entity.Line;
+import com.ordering.app.repository.LineRepository;
+import com.ordering.app.service.StaffService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

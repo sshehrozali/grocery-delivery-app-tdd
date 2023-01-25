@@ -1,6 +1,14 @@
 package com.ordering.app;
 
-import lombok.RequiredArgsConstructor;
+import com.ordering.app.dto.ItemDTO;
+import com.ordering.app.dto.LineDTO;
+import com.ordering.app.entity.Item;
+import com.ordering.app.entity.Line;
+import com.ordering.app.entity.Offer;
+import com.ordering.app.repository.ItemRepository;
+import com.ordering.app.repository.LineRepository;
+import com.ordering.app.repository.OfferRepository;
+import com.ordering.app.service.CustomerService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -9,8 +17,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
