@@ -79,4 +79,15 @@ public class StaffServiceTest {
         assertThat(serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToSave))
                 .isEqualTo(itemsToSave);
      }
+
+     @Test
+     @DisplayName("Should Throw Exception If Request Is Empty For Saving New Items In Inventory")
+     void shouldThrowExceptionIfRequestIsEmptyForSavingNewItemsInInventory() {
+        assertThrows(
+                RuntimeException.class,
+                () -> {
+                    serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(null);
+                }
+        );
+     }
 }
