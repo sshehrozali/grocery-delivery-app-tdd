@@ -49,7 +49,7 @@ public class CustomerServiceTest {
                         .build()
         );
         when(lineRepository.findAll()).thenReturn(lines);
-        assertThat(serviceUnderTest.getAllItems()).isNull();
+        assertThat(serviceUnderTest.getAllItems()).isEqualTo(lines);
     }
 
 }
