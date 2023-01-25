@@ -45,7 +45,7 @@ public class StaffServiceTest {
 
     @Test
     @DisplayName("Should Throw Exception If No Items Available In Inventory")
-     void shouldThrowExceptionIfNoItemsAvailableInInventory() {
+     void shouldThrowExceptionIfNoItemAvailableInInventory() {
         assertThrows(
                 RuntimeException.class,
                 () -> {
