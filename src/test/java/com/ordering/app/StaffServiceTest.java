@@ -119,8 +119,8 @@ public class StaffServiceTest {
      }
 
      @Test
-     @DisplayName("Should Throw Exception If Quantity Value Is Empty While Saving New Items In Inventory")
-     void shouldThrowExceptionIfQuantityValueIsEmptyWhileSavingNewItemsInInventory() {
+     @DisplayName("Should Throw Exception If Quantity Value Is Null While Saving New Items In Inventory")
+     void shouldThrowExceptionIfQuantityValueIsNullWhileSavingNewItemsInInventory() {
          ArrayList<Line> itemsToSave = new ArrayList<>();
          itemsToSave.add(
                  Line.builder()
