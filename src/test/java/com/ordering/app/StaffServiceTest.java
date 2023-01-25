@@ -90,4 +90,25 @@ public class StaffServiceTest {
                 }
         );
      }
+
+     @Test
+     @DisplayName("Should Throw Exception If Invalid Request Found For Saving New Items In Inventory")
+     void shouldThrowExceptionIfInvalidRequestIsFoundForSavingNewItemsInInventory() {
+        ArrayList<Line> itemsToSave = new ArrayList<>();
+        itemsToSave.add(
+                Line.builder()
+                        .itemId(
+                                Item.builder()
+                                        .build()
+                        )
+                        .build()
+        );
+
+        assertThrows(
+                RuntimeException.class,
+                () -> {
+                    serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToSave);
+                }
+        );
+     }
 }
