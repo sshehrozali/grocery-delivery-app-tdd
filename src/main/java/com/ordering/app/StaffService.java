@@ -16,4 +16,8 @@ public class StaffService {
         }
         return lineRepository.findAll();
     }
+
+    public List<Line> saveNewItemsOnlyInInventoryWithQuantity(List<Line> items) {
+        return lineRepository.saveAll(items);
+    }
 }
