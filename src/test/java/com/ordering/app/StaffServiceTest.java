@@ -8,9 +8,11 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -52,5 +54,29 @@ public class StaffServiceTest {
                     serviceUnderTest.getAllItemsInInventoryWithQuantity();
                 }
         );
+     }
+
+     @Test
+     @DisplayName("Should Save New Items Only In Inventory With Quantity")
+     void shouldSaveNewItemsOnlyInInventoryWithQuantity() {
+         List<Line> itemsToSave = new ArrayList<>();
+         itemsToSave.add(
+                 Line.builder()
+                         .itemId(
+                                 Item.builder()
+                                         .itemId("item1")
+                                         .itemName("Cool Item 1")
+                                         .description("Amazing product")
+                                         .price(87.5f)
+                                         .cost(78.5f)
+                                         .build()
+                             )
+                         .quantity(100)
+                         .build()
+         );
+        when(lineRepository.saveAll(any())).thenReturn(itemsToSave);
+
+        assertThat(serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToSave))
+                .isEqualTo(itemsToSave);
      }
 }
