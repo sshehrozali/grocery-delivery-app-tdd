@@ -1,4 +1,10 @@
 package com.ordering.app;
 
-public record LineDTO() {
+import lombok.Builder;
+
+@Builder
+public record LineDTO(
+        ItemDTO itemId,
+        Integer quantity
+) {
 }
