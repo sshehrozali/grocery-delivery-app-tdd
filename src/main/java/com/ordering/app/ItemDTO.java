@@ -1,4 +1,12 @@
 package com.ordering.app;
 
-public record ItemDTO() {
+import lombok.Builder;
+
+@Builder
+public record ItemDTO(
+        String id,
+        String name,
+        String description,
+        Float price
+) {
 }
