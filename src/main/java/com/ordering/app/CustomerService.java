@@ -20,6 +20,9 @@ public class CustomerService {
     }
 
     public List<Offer> getAllAvailableOffersForEachItems() {
-
+        if (offerRepository.findAll().isEmpty()) {
+            throw new RuntimeException("No Available Offers found for any Item yet. Bad luck :(");
+        }
+        return offerRepository.findAll();
     }
 }
