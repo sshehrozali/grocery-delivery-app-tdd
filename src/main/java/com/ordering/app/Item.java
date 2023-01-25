@@ -19,6 +19,7 @@ public class Item {
     private Integer id;
     private String itemId;
     private String itemName;
+    private String description;
     private Float price;
     private Float cost;
 }
