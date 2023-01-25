@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -41,4 +42,15 @@ public class StaffServiceTest {
 
         assertThat(serviceUnderTest.getAllItemsInInventoryWithQuantity()).isEqualTo(lines);
     }
+
+    @Test
+    @DisplayName("Should Throw Exception If No Items Available In Inventory")
+     void shouldThrowExceptionIfNoItemsAvailableInInventory() {
+        assertThrows(
+                RuntimeException.class,
+                () -> {
+                    serviceUnderTest.getAllItemsInInventoryWithQuantity();
+                }
+        );
+     }
 }
