@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -37,20 +39,39 @@ public class CustomerServiceTest {
     @Test
     @DisplayName("Should Get All Items With Their Available Quantity")
     void shouldGetAllItemsWithTheirAvailableQuantity() {
+        // Sample data line repo will return
         ArrayList<Line> lines = new ArrayList<>();
-        lines.add(
-                Line.builder()
+        lines.add(Line.builder()
+                .itemId(
+                        Item.builder()
+                                .itemId("item1")
+                                .itemName("Cool Item 1")
+                                .description("Amazing product")
+                                .price(155.5f)
+                                .cost(100.1f)
+                                .build()
+                )
+                .quantity(10)
+                .build());
+
+        // To return -> expected
+        ArrayList<LineDTO> linesDTOs = new ArrayList<>();
+        linesDTOs.add(
+                LineDTO.builder()
                         .itemId(
-                                Item.builder()
-                                        .itemId("item1")
-                                        .itemName("Cool Item 1")
-                                        .price("100")
+                                ItemDTO.builder()
+                                        .id("item1")
+                                        .name("Cool Item 1")
+                                        .description("Amazing product")
+                                        .price(155.5f)
                                         .build()
                         )
                         .quantity(10)
                         .build()
         );
+
         when(lineRepository.findAll()).thenReturn(lines);
+
         assertThat(serviceUnderTest.getAllItems()).isEqualTo(lines);
     }
 
@@ -75,7 +96,7 @@ public class CustomerServiceTest {
                                 Item.builder()
                                         .itemId("item1")
                                         .itemName("Cool item 1")
-                                        .price("200")
+                                        .price(122.f)
                                         .build()
                         )
                         .offerId("offer1")
