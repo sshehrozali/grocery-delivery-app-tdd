@@ -11,7 +11,10 @@ public class CustomerService {
     private final ItemRepository itemRepository;
     private final LineRepository lineRepository;
 
-    public List<Item> getAllItems() {
-        return
+    public List<Line> getAllItems() {
+        if (lineRepository.findAll().isEmpty()) {
+            throw new RuntimeException("No Items available in Stock yet. Come back later.");
+        }
+        return lineRepository.findAll();
     }
 }
