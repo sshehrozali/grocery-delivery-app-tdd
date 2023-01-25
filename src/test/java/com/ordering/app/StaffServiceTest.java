@@ -81,8 +81,8 @@ public class StaffServiceTest {
      }
 
      @Test
-     @DisplayName("Should Throw Exception If Request Is Empty For Saving New Items In Inventory")
-     void shouldThrowExceptionIfRequestIsEmptyForSavingNewItemsInInventory() {
+     @DisplayName("Should Throw Exception If Request Is Null For Saving New Items In Inventory")
+     void shouldThrowExceptionIfRequestIsNullForSavingNewItemsInInventory() {
         assertThrows(
                 RuntimeException.class,
                 () -> {
@@ -92,15 +92,21 @@ public class StaffServiceTest {
      }
 
      @Test
-     @DisplayName("Should Throw Exception If Any Item Value is Empty While Saving Items In Inventory")
-     void shouldThrowExceptionIfAnyItemValueIsEmptyWhileSavingItemsInInventory() {
+     @DisplayName("Should Throw Exception If Any Item Value is Null While Saving Items In Inventory")
+     void shouldThrowExceptionIfAnyItemValueIsNullWhileSavingItemsInInventory() {
         ArrayList<Line> itemsToSave = new ArrayList<>();
         itemsToSave.add(
                 Line.builder()
                         .itemId(
                                 Item.builder()
+                                        .itemId("item1")
+                                        .itemName("Cool Item 1")
+                                        .description("Amazing product")
+                                        .price(87.5f)
+                                        // not providing cost value here (null)
                                         .build()
                         )
+                        .quantity(100)
                         .build()
         );
 
@@ -115,6 +121,26 @@ public class StaffServiceTest {
      @Test
      @DisplayName("Should Throw Exception If Quantity Value Is Empty While Saving New Items In Inventory")
      void shouldThrowExceptionIfQuantityValueIsEmptyWhileSavingNewItemsInInventory() {
+         ArrayList<Line> itemsToSave = new ArrayList<>();
+         itemsToSave.add(
+                 Line.builder()
+                         .itemId(
+                                 Item.builder()
+                                         .itemId("item1")
+                                         .itemName("Cool Item 1")
+                                         .description("Amazing product")
+                                         .price(87.5f)
+                                         .cost(78.5f)
+                                         .build()
+                         )
+                         .build()
+         );
 
+        assertThrows(
+                IllegalAccessException.class,
+                () -> {
+                    serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToSave);
+                }
+        );
      }
 }
