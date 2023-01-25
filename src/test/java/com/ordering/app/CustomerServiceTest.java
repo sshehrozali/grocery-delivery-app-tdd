@@ -52,4 +52,10 @@ public class CustomerServiceTest {
         assertThat(serviceUnderTest.getAllItems()).isEqualTo(lines);
     }
 
+    @Test
+    @DisplayName("Should Get All Available Offers For Each Items")
+    void shouldGetAllAvailableOffersForEachItem() {
+
+    }
+
 }
