@@ -10,6 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.ArrayList;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class StaffServiceTest {
@@ -36,6 +37,8 @@ public class StaffServiceTest {
                         .quantity(15)
                         .build()
         );
+        when(lineRepository.findAll()).thenReturn(lines);
+
         assertThat(serviceUnderTest.getAllItemsInInventoryWithQuantity()).isEqualTo(lines);
     }
 }
