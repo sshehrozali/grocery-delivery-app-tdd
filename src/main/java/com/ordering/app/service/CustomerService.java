@@ -1,5 +1,6 @@
 package com.ordering.app.service;
 
+import com.ordering.app.dto.ItemDTO;
 import com.ordering.app.dto.LineDTO;
 import com.ordering.app.entity.Offer;
 import com.ordering.app.repository.ItemRepository;
