@@ -72,7 +72,7 @@ public class CustomerServiceTest {
 
         when(lineRepository.findAll()).thenReturn(lines);
 
-        assertThat(serviceUnderTest.getAllItems()).isEqualTo(lines);
+        assertThat(serviceUnderTest.getAllItems()).isEqualTo(linesDTOs);
     }
 
     @Test
