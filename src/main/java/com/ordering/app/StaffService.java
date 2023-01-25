@@ -23,13 +23,16 @@ public class StaffService {
         }
 
         items.forEach(line -> {
-            if (line.getItemId().getItemId().isEmpty()
-                    || line.getItemId().getItemName().isEmpty()
-                    || line.getItemId().getDescription().isEmpty()
-                    || line.getItemId().getPrice().equals(null)
-                    || line.getItemId().getCost().equals(null)
-            ) {
+            if (line == null) {
+                throw new RuntimeException("No Item found for saving. Please add Items before saving.");
+            }
 
+            if (line.getItemId().getItemId() == null
+                    || line.getItemId().getItemName() == null
+                    || line.getItemId().getDescription() == null
+                    || line.getItemId().getPrice() == null
+                    || line.getItemId().getCost() == null
+            ) {
                 throw new RuntimeException("Values of Items can't be empty. Please check before saving.");
             }
         });
