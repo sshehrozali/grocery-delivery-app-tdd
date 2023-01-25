@@ -92,8 +92,8 @@ public class StaffServiceTest {
      }
 
      @Test
-     @DisplayName("Should Throw Exception If Invalid Request Found For Saving New Items In Inventory")
-     void shouldThrowExceptionIfInvalidRequestIsFoundForSavingNewItemsInInventory() {
+     @DisplayName("Should Throw Exception If Any Value is Empty While Saving Items In Inventory")
+     void shouldThrowExceptionIfAnyValueIsEmptyWhileSavingItemsInInventory() {
         ArrayList<Line> itemsToSave = new ArrayList<>();
         itemsToSave.add(
                 Line.builder()
