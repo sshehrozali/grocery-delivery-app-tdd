@@ -8,8 +8,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 public class CustomerServiceTest {
@@ -32,7 +35,21 @@ public class CustomerServiceTest {
     @Test
     @DisplayName("Should Get All Items With Their Available Quantity")
     void shouldGetAllItemsWithTheirAvailableQuantity() {
-        assertThat(serviceUnderTest.getAllItems()).isNotNull();
+        ArrayList<Line> lines = new ArrayList<>();
+        lines.add(
+                Line.builder()
+                        .itemId(
+                                Item.builder()
+                                        .itemId("item1")
+                                        .itemName("Cool Item 1")
+                                        .price("100")
+                                        .build()
+                        )
+                        .quantity(10)
+                        .build()
+        );
+        when(lineRepository.findAll()).thenReturn(lines);
+        assertThat(serviceUnderTest.getAllItems()).isNull();
     }
 
 }
