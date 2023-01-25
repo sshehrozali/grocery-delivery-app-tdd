@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.RejectedExecutionException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -137,7 +138,7 @@ public class StaffServiceTest {
          );
 
         assertThrows(
-                IllegalAccessException.class,
+                RejectedExecutionException.class,
                 () -> {
                     serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToSave);
                 }
