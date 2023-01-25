@@ -111,4 +111,10 @@ public class StaffServiceTest {
                 }
         );
      }
+
+     @Test
+     @DisplayName("Should Throw Exception If Quantity Value Is Empty While Saving New Items In Inventory")
+     void shouldThrowExceptionIfQuantityValueIsEmptyWhileSavingNewItemsInInventory() {
+
+     }
 }
