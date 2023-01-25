@@ -1,5 +1,6 @@
-package com.ordering.app;
+package com.ordering.app.entity;
 
+import com.ordering.app.entity.Item;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;

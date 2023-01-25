@@ -1,5 +1,7 @@
-package com.ordering.app;
+package com.ordering.app.service;
 
+import com.ordering.app.entity.Line;
+import com.ordering.app.repository.LineRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

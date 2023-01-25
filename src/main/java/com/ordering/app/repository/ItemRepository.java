@@ -1,5 +1,6 @@
-package com.ordering.app;
+package com.ordering.app.repository;
 
+import com.ordering.app.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

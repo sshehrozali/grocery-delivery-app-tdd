@@ -1,4 +1,4 @@
-package com.ordering.app;
+package com.ordering.app.dto;
 
 import lombok.Builder;
 

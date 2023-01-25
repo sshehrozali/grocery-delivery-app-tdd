@@ -1,4 +1,4 @@
-package com.ordering.app;
+package com.ordering.app.entity;
 
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
