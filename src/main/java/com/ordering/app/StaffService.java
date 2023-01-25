@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.concurrent.RejectedExecutionException;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +26,10 @@ public class StaffService {
         items.forEach(line -> {
             if (line == null) {
                 throw new RuntimeException("No Item found for saving. Please add Items before saving.");
+            }
+
+            if (line.getQuantity() == null) {
+                throw new RejectedExecutionException("Quantity of Item can't be null. Please provide quantity of each item as well before saving.");
             }
 
             if (line.getItemId().getItemId() == null
