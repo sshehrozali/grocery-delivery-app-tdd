@@ -2,6 +2,7 @@ package com.ordering.app;
 
 import com.ordering.app.entity.Item;
 import com.ordering.app.entity.Line;
+import com.ordering.app.repository.ItemRepository;
 import com.ordering.app.repository.LineRepository;
 import com.ordering.app.service.StaffService;
 import org.junit.jupiter.api.DisplayName;
@@ -26,6 +27,8 @@ public class StaffServiceTest {
     private StaffService serviceUnderTest;
     @Mock
     private LineRepository lineRepository;
+    @Mock
+    private ItemRepository itemRepository;
 
     @Test
     @DisplayName("Should Get All Items Available In Inventory With Quantity")
@@ -152,6 +155,35 @@ public class StaffServiceTest {
      @Test
      @DisplayName("Should Only Update Items Available In Inventory")
      void shouldOnlyUpdateItemsAvailableInInventory() {
+         ArrayList<Line> itemsToUpdate = new ArrayList<>();
+         itemsToUpdate.add(
+                 Line.builder()
+                         .itemId(
+                                 Item.builder()
+                                         .itemId("item1")
+                                         .itemName("Cool Item 1")
+                                         .description("Amazing product")
+                                         .price(87.5f)
+                                         .cost(78.5f)
+                                         .build()
+                         )
+                         .build()
+         );
 
+         ArrayList<Line> updatedItemsToReturn = new ArrayList<>();
+         updatedItemsToReturn.add(
+                 Line.builder()
+                         .itemId(
+                                 Item.builder()
+                                         .itemId("item1")
+                                         .itemName("Cool Item 1")
+                                         .description("Amazing product")
+                                         .price(87.5f)
+                                         .cost(78.5f)
+                                         .build()
+                         )
+                         .build()
+         );
+         when()
      }
 }
