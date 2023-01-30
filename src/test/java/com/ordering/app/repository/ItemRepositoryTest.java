@@ -34,6 +34,7 @@ class ItemRepositoryTest {
     @Test
     @DisplayName("Should Return Null If Item Not Found By Item Id")
     void shouldReturnNullIfItemNotFoundByItemId() {
-
+        assertThat(itemRepository.findItemByItemId("item2"))
+                .isNotNull();
     }
 }
