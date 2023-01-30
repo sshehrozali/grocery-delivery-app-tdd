@@ -47,7 +47,6 @@ public class StaffService {
 
             if (itemRepository.findItemByItemId(line.getItemId().getItemId()) != null) {
                 items.remove(line);     // Remove current updated Line from list
-                throw new RuntimeException("Item Already exists. Updating...");
             }
         });
         lineRepository.saveAll(items);
