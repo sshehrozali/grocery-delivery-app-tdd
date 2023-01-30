@@ -163,10 +163,33 @@ public class StaffServiceTest {
                          .price(87.5f)
                          .cost(78.5f)
                          .build();
-         when(itemRepository.findItemByItemId(any())).thenReturn(alreadySavedItem);
+         ArrayList<Line> alreadySavedLines = new ArrayList<>();
+         alreadySavedLines.add(
+                 Line.builder()
+                         .itemId(alreadySavedItem)
+                         .quantity(10)
+                         .build()
+         );
+         when(lineRepository.saveAll(any())).thenReturn(alreadySavedLines);
 
-         assertThat(serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(alreadySavedItem))
-                 .thenReturn(alreadySavedItem);
+         ArrayList<Line> itemsToUpdate = new ArrayList<>();
+         itemsToUpdate.add(
+                 Line.builder()
+                         .itemId(
+                                 Item.builder()
+                                         .itemId("item1")
+                                         .itemName("Updated Cool Item 1")
+                                         .description("Amazing product")
+                                         .price(87.5f)
+                                         .cost(78.5f)
+                                         .build()
+                         )
+                         .quantity(10)
+                         .build()
+         );
+
+         assertThat(serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToUpdate))
+                 .isEqualTo(itemsToUpdate);
 
      }
 }
