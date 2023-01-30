@@ -27,7 +27,7 @@ class ItemRepositoryTest {
                 .build();
         itemRepository.save(savedItem);
 
-        assertThat(itemRepository.findItemByItemId(savedItem.getItemId()))
+        assertThat(itemRepository.findItemByItemId("item2"))
                 .isEqualTo(savedItem);
     }
 }
