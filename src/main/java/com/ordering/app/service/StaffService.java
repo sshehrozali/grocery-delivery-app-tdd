@@ -1,6 +1,7 @@
 package com.ordering.app.service;
 
 import com.ordering.app.entity.Line;
+import com.ordering.app.repository.ItemRepository;
 import com.ordering.app.repository.LineRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.concurrent.RejectedExecutionException;
 @RequiredArgsConstructor
 public class StaffService {
     private LineRepository lineRepository;
+    private ItemRepository itemRepository;
 
     public List<Line> getAllItemsInInventoryWithQuantity() {
         if (lineRepository.findAll().isEmpty()) {
@@ -42,6 +44,8 @@ public class StaffService {
             ) {
                 throw new RuntimeException("Values of Items can't be empty. Please check before saving.");
             }
+
+
         });
         return lineRepository.saveAll(items);
     }
