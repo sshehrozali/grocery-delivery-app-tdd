@@ -1,18 +1,34 @@
 package com.ordering.app.repository;
 
-import lombok.RequiredArgsConstructor;
+import com.ordering.app.entity.Item;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 @DataJpaTest
-@RequiredArgsConstructor
 class ItemRepositoryTest {
 
     private ItemRepository itemRepository;
 
+    ItemRepositoryTest(ItemRepository itemRepository) {
+        this.itemRepository = itemRepository;
+    }
+
     @Test
     @DisplayName("Should Find Item By Item Id")
     void shouldFindItemByItemId() {
+        Item savedItem = Item.builder()
+                .itemId("item1")
+                .itemName("Cool Item 1")
+                .description("Amazing product")
+                .price(12.4f)
+                .cost(5.6f)
+                .build();
+        itemRepository.save(savedItem);
+
+        assertThat(itemRepository.findItemByItemId(savedItem.getItemId()))
+                .isEqualTo(savedItem);
     }
 }
