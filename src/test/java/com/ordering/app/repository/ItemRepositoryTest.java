@@ -30,4 +30,10 @@ class ItemRepositoryTest {
         assertThat(itemRepository.findItemByItemId("item1"))
                 .isEqualTo(savedItem);
     }
+
+    @Test
+    @DisplayName("Should Return Null If Item Not Found By Item Id")
+    void shouldReturnNullIfItemNotFoundByItemId() {
+
+    }
 }
