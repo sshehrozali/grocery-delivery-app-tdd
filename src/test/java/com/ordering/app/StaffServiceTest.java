@@ -155,18 +155,18 @@ public class StaffServiceTest {
      @Test
      @DisplayName("Should Only Update Items Available In Inventory")
      void shouldOnlyUpdateItemsAvailableInInventory() {
-         Line alreadySavedItem = Line.builder()
-                 .itemId(
-                         Item.builder()
-                                 .itemId("item1")
-                                 .itemName("Cool Item 1")
-                                 .description("Amazing product")
-                                 .price(87.5f)
-                                 .cost(78.5f)
-                                 .build()
-                 )
-                 .build();
-        when(itemRepository.findItemByItemId(any())).thenReturn(alreadySavedItem);
+         Item alreadySavedItem =
+                 Item.builder()
+                         .itemId("item1")
+                         .itemName("Cool Item 1")
+                         .description("Amazing product")
+                         .price(87.5f)
+                         .cost(78.5f)
+                         .build();
+         when(itemRepository.findItemByItemId(any())).thenReturn(alreadySavedItem);
+
+         assertThat(serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(alreadySavedItem))
+                 .thenReturn(alreadySavedItem);
 
      }
 }
