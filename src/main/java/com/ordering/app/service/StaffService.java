@@ -45,6 +45,10 @@ public class StaffService {
             ) {
                 throw new RuntimeException("Values of Items can't be empty. Please check before saving.");
             }
+
+            if (itemRepository.findItemByItemId(line.getItemId().getItemId()) != null) {
+                throw new RuntimeException("Item already exists. Please update item first.");
+            }
         });
         return lineRepository.saveAll(items);
     }
