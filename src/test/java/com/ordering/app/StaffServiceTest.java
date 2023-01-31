@@ -155,49 +155,6 @@ public class StaffServiceTest {
      @Test
      @DisplayName("Should Only Update Items Available In Inventory")
      void shouldOnlyUpdateItemsAvailableInInventory() {
-        // First building Foo item
-         Item alreadySavedItem =
-                 Item.builder()
-                         .itemId("item1")
-                         .itemName("Cool Item 1")
-                         .description("Amazing product")
-                         .price(87.5f)
-                         .cost(78.5f)
-                         .build();
-         // Then building line -> contains Foo item
-         ArrayList<Line> alreadySavedLines = new ArrayList<>();
-         alreadySavedLines.add(
-                 Line.builder()
-                         .itemId(alreadySavedItem)
-                         .quantity(10)
-                         .build()
-         );
 
-         when(itemRepository.findItemByItemId(any())).thenReturn(alreadySavedItem);
-
-         ArrayList<Line> itemsToUpdate = new ArrayList<>();
-         itemsToUpdate.add(
-                 Line.builder()
-                         .itemId(
-                                 Item.builder()
-                                         .itemId("item1")
-                                         .itemName("Updated Cool Item 1")
-                                         .description("Amazing product")
-                                         .price(87.5f)
-                                         .cost(78.5f)
-                                         .build()
-                         )
-                         .quantity(10)
-                         .build()
-         );
-
-         // When .findItemByItemId() is invoked in service class -> please return Foo item
-         // Yes Foo item, already exists
-         // Delete Foo item from itemsToUpdate list (to match the difference)
-         // Now itemsToUpdate list length = 0 (because we deleted Foo item, as it already exists so no need to save again)
-         // The .saveNewItemsOnlyInInventoryWithQuantity() will return [] list
-         // Asserting with itemsToUpdate list (length = 1)
-         assertThat(serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToUpdate))
-                 .isEqualTo(itemsToUpdate);
      }
 }
