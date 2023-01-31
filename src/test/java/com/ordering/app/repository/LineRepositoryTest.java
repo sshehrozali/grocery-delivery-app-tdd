@@ -44,10 +44,15 @@ class LineRepositoryTest {
                 .price(87.5f)
                 .cost(78.5f)
                 .build();
+        Line alreadySavedLine2 = Line.builder()
+                .itemId(notSavedItem)
+                .quantity(90)
+                .build();
+        lineRepository.save(alreadySavedLine2);
 
         List<Line> actual = new ArrayList<>();
         actual.add(alreadySavedLine);
 
-        assertThat(lineRepository.findAll()).isNotNull();
+        assertThat(lineRepository.findLineByItemId(notSavedItem)).isNotNull();
     }
 }
