@@ -155,6 +155,28 @@ public class StaffServiceTest {
      @Test
      @DisplayName("Should Only Update Items Available In Inventory")
      void shouldOnlyUpdateItemsAvailableInInventory() {
+         ArrayList<Line> itemsToUpdate = new ArrayList<>();
+         itemsToUpdate.add(
+                 Line.builder()
+                         .itemId(
+                                 Item.builder()
+                                         .itemId("item1")
+                                         .itemName("Cool Item 1")
+                                         .description("Amazing product")
+                                         .price(87.5f)
+                                         .cost(78.5f)
+                                         .build()
+                         )
+                         .build()
+         );
+         // Stub behaviour when we are checking if item already exists
+         when(itemRepository.findItemByItemId(any())).thenReturn(itemsToUpdate.get(0).getItemId());
 
+         assertThrows(
+                 RuntimeException.class,
+                 () -> {
+                     serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToUpdate);
+                 }
+         );
      }
 }
