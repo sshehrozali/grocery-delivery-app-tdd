@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Service
 @RequiredArgsConstructor
@@ -44,12 +45,7 @@ public class StaffService {
             ) {
                 throw new RuntimeException("Values of Items can't be empty. Please check before saving.");
             }
-
-            if (itemRepository.findItemByItemId(line.getItemId().getItemId()) != null) {
-                items.remove(line);     // Remove current updated Line from list
-            }
         });
-        lineRepository.saveAll(items);
-        return items;
+        return lineRepository.saveAll(items);
     }
 }
