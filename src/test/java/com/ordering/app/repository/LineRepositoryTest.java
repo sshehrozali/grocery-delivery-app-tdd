@@ -37,6 +37,6 @@ class LineRepositoryTest {
                 .build();
         lineRepository.save(alreadySavedLine);
 
-        assertThat(lineRepository.findLineByItemId("item1")).isNull();
+        assertThat(lineRepository.findLineByItemId("item1")).isEqualTo(alreadySavedLine);
     }
 }
