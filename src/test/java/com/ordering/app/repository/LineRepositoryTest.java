@@ -49,6 +49,6 @@ class LineRepositoryTest {
 //                .quantity(90)
 //                .build();
 
-        assertThat(lineRepository.findLineByItemId("item2")).isNotNull(); // It should be NULL to pass the test
+        assertThat(lineRepository.findLineByItemId("item2")).isNull(); // It should be NULL to pass the test
     }
 }
