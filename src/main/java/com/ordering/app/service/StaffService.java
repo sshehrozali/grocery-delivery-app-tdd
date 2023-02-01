@@ -1,5 +1,6 @@
 package com.ordering.app.service;
 
+import com.ordering.app.entity.Item;
 import com.ordering.app.entity.Line;
 import com.ordering.app.repository.ItemRepository;
 import com.ordering.app.repository.LineRepository;
@@ -47,7 +48,16 @@ public class StaffService {
             }
 
             if (itemRepository.findItemByItemId(line.getItemId().getItemId()) != null) {
-                throw new RuntimeException("Item already exists. Please update item first.");
+                Item existingItem = itemRepository.findItemByItemId(line.getItemId().getItemId());
+                existingItem.setItemName(line.getItemId().getItemName());
+                existingItem.setDescription(line.getItemId().getDescription());
+                existingItem.setCost(line.getItemId().getCost());
+                existingItem.setPrice(line.getItemId().getPrice());
+                itemRepository.save(existingItem);    // Updates item entity
+
+                Line existingLine = lineRepository.findLineByItemId(existingItem.getItemId());
+                existingLine.setQuantity(line.getQuantity());
+                lineRepository.save(existingLine);  // Updates line entity
             }
         });
         return lineRepository.saveAll(items);
