@@ -37,22 +37,18 @@ class LineRepositoryTest {
                 .build();
         lineRepository.save(alreadySavedLine);
 
-        Item notSavedItem = Item.builder()
-                .itemId("item2")
-                .itemName("Cool Item 1")
-                .description("Amazing product")
-                .price(87.5f)
-                .cost(78.5f)
-                .build();
-        Line alreadySavedLine2 = Line.builder()
-                .itemId(notSavedItem)
-                .quantity(90)
-                .build();
-        lineRepository.save(alreadySavedLine2);
+//        Item notSavedItem = Item.builder()
+//                .itemId("item2")
+//                .itemName("Cool Item 1")
+//                .description("Amazing product")
+//                .price(87.5f)
+//                .cost(78.5f)
+//                .build();
+//        Line notSavedLine = Line.builder()
+//                .itemId(notSavedItem)
+//                .quantity(90)
+//                .build();
 
-        List<Line> actual = new ArrayList<>();
-        actual.add(alreadySavedLine);
-
-        assertThat(lineRepository.findLineByItemId(notSavedItem)).isNotNull();
+        assertThat(lineRepository.findLineByItemId("item2")).isNotNull(); // It should be NULL to pass the test
     }
 }
