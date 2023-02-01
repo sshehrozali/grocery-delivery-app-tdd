@@ -163,23 +163,34 @@ public class StaffServiceTest {
                  .price(87.5f)
                  .cost(78.5f)
                  .build();
-        Line alreadyExistsLine = Line.builder()
-                .itemId(alreadyExistsItem)
-                .quantity(89)
-                .build();
+         Line alreadyExistsLine = Line.builder()
+                 .itemId(alreadyExistsItem)
+                 .quantity(89)
+                 .build();
          // Stub behaviour when we are checking if item already exists
          when(itemRepository.findItemByItemId(anyString())).thenReturn(alreadyExistsItem);
          when(lineRepository.findLineByItemId(anyString())).thenReturn(alreadyExistsLine);
 
+         // Items to save/update
          ArrayList<Line> itemsToUpdate = new ArrayList<>();
          itemsToUpdate.add(
                  Line.builder()
-                         .itemId(alreadyExistsItem)
+                         .itemId(
+                                 // This item should be updated
+                                 Item.builder()
+                                         .itemId("item1")   // Passing same itemId
+                                         .itemName("Updated Cool Item 1") // But different itemName
+                                         .description("Updated Amazing product") // But different description
+                                         .price(67.5f)  // But different price
+                                         .cost(100.7f)   // And different cost as well
+                                         .build()
+                         )
                          .quantity(10)
                          .build()
          );
 
-        assertThat(serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToUpdate))
-                .isNotNull();
+         // Calling serviceUnderTest to save/update items
+         serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToUpdate);
+         assertThat(itemRepository.findItemByItemId("item1")).isNull();
      }
 }
