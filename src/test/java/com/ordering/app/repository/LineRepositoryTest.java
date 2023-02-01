@@ -43,6 +43,6 @@ class LineRepositoryTest {
     @Test
     @DisplayName("Should Not Find Line By Item Id")
     void shouldNotFindLineByItemId() {
-
+        assertThat(lineRepository.findLineByItemId("item3")).isNotNull();
     }
 }
