@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface LineRepository extends JpaRepository<Line, Integer> {
-    @Query
-    Line findLineByItemId(Item item);
+    @Query("SELECT l FROM Line l JOIN l.itemId i WHERE i.itemId LIKE %?1%")
+    Line findLineByItemId(String itemId);
 }
