@@ -191,6 +191,6 @@ public class StaffServiceTest {
 
          // Calling serviceUnderTest to save/update items
          serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToUpdate);
-         assertThat(itemRepository.findItemByItemId("item1")).isNull();
+         assertThat(itemRepository.findItemByItemId("item1")).isEqualTo(itemsToUpdate.get(0).getItemId());
      }
 }
