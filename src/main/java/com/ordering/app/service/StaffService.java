@@ -60,6 +60,7 @@ public class StaffService {
                 lineRepository.save(existingLine);  // Updates line entity
             }
         });
+
         return lineRepository.saveAll(items);
     }
 }
