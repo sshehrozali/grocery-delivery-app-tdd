@@ -19,6 +19,7 @@ import java.util.concurrent.RejectedExecutionException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -155,28 +156,30 @@ public class StaffServiceTest {
      @Test
      @DisplayName("Should Only Update Items Available In Inventory")
      void shouldOnlyUpdateItemsAvailableInInventory() {
+         Item alreadyExistsItem = Item.builder()
+                 .itemId("item1")
+                 .itemName("Cool Item 1")
+                 .description("Amazing product")
+                 .price(87.5f)
+                 .cost(78.5f)
+                 .build();
+        Line alreadyExistsLine = Line.builder()
+                .itemId(alreadyExistsItem)
+                .quantity(89)
+                .build();
+         // Stub behaviour when we are checking if item already exists
+         when(itemRepository.findItemByItemId(anyString())).thenReturn(alreadyExistsItem);
+         when(lineRepository.findLineByItemId(anyString())).thenReturn(alreadyExistsLine);
+
          ArrayList<Line> itemsToUpdate = new ArrayList<>();
          itemsToUpdate.add(
                  Line.builder()
-                         .itemId(
-                                 Item.builder()
-                                         .itemId("item1")
-                                         .itemName("Cool Item 1")
-                                         .description("Amazing product")
-                                         .price(87.5f)
-                                         .cost(78.5f)
-                                         .build()
-                         )
+                         .itemId(alreadyExistsItem)
+                         .quantity(10)
                          .build()
          );
-         // Stub behaviour when we are checking if item already exists
-         when(itemRepository.findItemByItemId(any())).thenReturn(itemsToUpdate.get(0).getItemId());
 
-         assertThrows(
-                 RuntimeException.class,
-                 () -> {
-                     serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToUpdate);
-                 }
-         );
+        assertThat(serviceUnderTest.saveNewItemsOnlyInInventoryWithQuantity(itemsToUpdate))
+                .isNotNull();
      }
 }
