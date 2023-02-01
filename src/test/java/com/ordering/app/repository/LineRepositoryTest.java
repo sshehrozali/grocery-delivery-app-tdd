@@ -37,18 +37,6 @@ class LineRepositoryTest {
                 .build();
         lineRepository.save(alreadySavedLine);
 
-//        Item notSavedItem = Item.builder()
-//                .itemId("item2")
-//                .itemName("Cool Item 1")
-//                .description("Amazing product")
-//                .price(87.5f)
-//                .cost(78.5f)
-//                .build();
-//        Line notSavedLine = Line.builder()
-//                .itemId(notSavedItem)
-//                .quantity(90)
-//                .build();
-
-        assertThat(lineRepository.findLineByItemId("item2")).isNull(); // It should be NULL to pass the test
+        assertThat(lineRepository.findLineByItemId("item1")).isNull();
     }
 }
