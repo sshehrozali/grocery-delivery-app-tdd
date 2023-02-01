@@ -39,4 +39,10 @@ class LineRepositoryTest {
 
         assertThat(lineRepository.findLineByItemId("item1")).isEqualTo(alreadySavedLine);
     }
+
+    @Test
+    @DisplayName("Should Not Find Line By Item Id")
+    void shouldNotFindLineByItemId() {
+
+    }
 }
