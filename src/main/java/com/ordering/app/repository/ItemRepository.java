@@ -13,5 +13,5 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
     Item findItemByItemId(String itemId);
 
     @Query
-    void deleteAllByItemId(List<String> itemIds);
+    void deleteItemsByItemId(String itemId);
 }
