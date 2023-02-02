@@ -1,4 +1,11 @@
 package com.ordering.app.dto;
 
-public record DeleteItemsDTO() {
+import lombok.Builder;
+
+import java.util.List;
+
+@Builder
+public record DeleteItemsDTO(
+        List<String> itemIds
+) {
 }
