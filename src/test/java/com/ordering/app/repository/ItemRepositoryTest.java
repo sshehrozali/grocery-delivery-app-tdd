@@ -63,7 +63,7 @@ class ItemRepositoryTest {
         itemRepository.saveAll(savedItems);
 
         String[] itemIds = {"item1", "item2"};
-        itemRepository.deleteAllByItemId(itemIds);
+        itemRepository.deleteItemsByItemId("item1");
 
         assertThat(itemRepository.findAll()).isNotNull();
     }
