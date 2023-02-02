@@ -203,6 +203,8 @@ public class StaffServiceTest {
          DeleteItemsDTO deleteItemsDTO = DeleteItemsDTO.builder()
                  .itemIds(List.of("item1", "item2"))
                  .build();
+         when(itemRepository.deleteAllByItemId(any())).thenReturn(null);
+
          serviceUnderTest.deleteItemsByIds(deleteItemsDTO);
      }
 }
