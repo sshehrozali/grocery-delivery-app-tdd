@@ -37,4 +37,10 @@ class ItemRepositoryTest {
         assertThat(itemRepository.findItemByItemId("item2"))
                 .isNull();
     }
+
+    @Test
+    @DisplayName("Should Delete All Items By Item Id")
+    void shouldDeleteAllItemsByItemId() {
+
+    }
 }
