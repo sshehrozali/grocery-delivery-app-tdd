@@ -1,5 +1,6 @@
 package com.ordering.app;
 
+import com.ordering.app.dto.DeleteItemsDTO;
 import com.ordering.app.entity.Item;
 import com.ordering.app.entity.Line;
 import com.ordering.app.repository.ItemRepository;
@@ -199,6 +200,9 @@ public class StaffServiceTest {
      @Test
      @DisplayName("Should Delete Items From Inventory By Given Item Ids")
      void shouldDeleteItemsFromInventoryByGivenItemIds() {
-
+         DeleteItemsDTO deleteItemsDTO = DeleteItemsDTO.builder()
+                 .itemIds(List.of("item1", "item2"))
+                 .build();
+         serviceUnderTest.deleteItemsByIds(deleteItemsDTO);
      }
 }
