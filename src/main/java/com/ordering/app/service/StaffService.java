@@ -1,5 +1,6 @@
 package com.ordering.app.service;
 
+import com.ordering.app.dto.DeleteItemsDTO;
 import com.ordering.app.entity.Item;
 import com.ordering.app.entity.Line;
 import com.ordering.app.repository.ItemRepository;
@@ -62,5 +63,9 @@ public class StaffService {
         });
 
         return lineRepository.saveAll(items);
+    }
+
+    public DeleteItemsDTO deleteItemsByIds(DeleteItemsDTO deleteItemsDTO) {
+        return deleteItemsDTO;
     }
 }
