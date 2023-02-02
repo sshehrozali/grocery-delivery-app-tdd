@@ -195,4 +195,10 @@ public class StaffServiceTest {
          // Asserting that did item get updated?
          assertThat(itemRepository.findItemByItemId("item1")).isEqualTo(itemsToUpdate.get(0).getItemId());
      }
+
+     @Test
+     @DisplayName("Should Delete Items From Inventory By Given Item Ids")
+     void shouldDeleteItemsFromInventoryByGivenItemIds() {
+
+     }
 }
