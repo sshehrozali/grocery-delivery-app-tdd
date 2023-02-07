@@ -62,9 +62,11 @@ class ItemRepositoryTest {
         );
         itemRepository.saveAll(savedItems);
 
-        String[] itemIds = {"item1", "item2"};
-        itemRepository.deleteItemsByItemId("item1");
+        // Deleting all items
+        List<String> itemIds = List.of("item1", "item2");
+        itemRepository.deleteItemsWithItemIds(itemIds);
 
-        assertThat(itemRepository.findAll()).isNotNull();
+        // Repository should be empty
+        assertThat(itemRepository.findAll()).isNotEmpty();
     }
 }
