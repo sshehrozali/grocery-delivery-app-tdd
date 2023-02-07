@@ -67,6 +67,6 @@ class ItemRepositoryTest {
         itemRepository.deleteItemsWithItemIds(itemIds);
 
         // Repository should be empty
-        assertThat(itemRepository.findAll()).isNotEmpty();
+        assertThat(itemRepository.findAll()).isEmpty();
     }
 }
