@@ -16,6 +16,8 @@ class LineRepositoryTest {
 
     @Autowired
     private LineRepository lineRepository;
+    @Autowired
+    private ItemRepository itemRepository;
 
     @Test
     @DisplayName("Should Find Line By Item Id")
@@ -46,6 +48,25 @@ class LineRepositoryTest {
     @Test
     @DisplayName("Should Delete Lines By Item Ids")
     void shouldDeleteLinesByItemIds() {
+        List<Item> alreadySavedItems = List.of(
+                Item.builder()
+                        .itemId("item1")
+                        .itemName("Cool Item 1")
+                        .description("Amazing product")
+                        .price(87.5f)
+                        .cost(78.5f)
+                        .build(),
+                Item.builder()
+                        .itemId("item2")
+                        .itemName("Cool Item 2")
+                        .description("Amazing product")
+                        .price(34.6f)
+                        .cost(866.6f)
+                        .build()
+
+        );
+        itemRepository.saveAll(alreadySavedItems);
+
         List<Line> alreadySavedLines = List.of(
                 Line.builder()
                         .itemId(
