@@ -17,6 +17,7 @@ public class Line {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "item_id", referencedColumnName = "itemId")
     private Item itemId;
     private Integer quantity;
 }
